@@ -15,10 +15,10 @@ mult = n.array(z)
 av = n.average(mult)
 
 u = [cases[len(cases)-1]]
-for i in range(6):
+for i in range(7):
     u.append(u[i]*av)
 case_model = n.array(u)
-day_model = n.arange(len(cases), len(cases)+7, 1)
+day_model = n.arange(len(cases), len(cases)+8, 1)
 
 FP, COV = curve_fit(exponential, day, cases)
 
@@ -36,11 +36,11 @@ p.grid("on")
 for i, text in enumerate(cases):
     p.annotate(text, (day[i], cases[i]), textcoords = "offset points", xytext = (0, 10), ha = "center")
 
-p.annotate(str(int(round(case_model[6]))), (day_model[6], case_model[6]), textcoords = "offset points", xytext = (0, 10), ha = "center")
+p.annotate(str(int(round(case_model[7]))), (day_model[7], case_model[7]), textcoords = "offset points", xytext = (0, 10), ha = "center")
 
 a.spines['right'].set_visible(False)
 a.spines['top'].set_visible(False)
 
-p.xticks(range(1, len(cases)+8))
+p.xticks(range(1, len(cases)+9))
 
 p.show()
