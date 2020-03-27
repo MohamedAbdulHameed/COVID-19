@@ -2,7 +2,7 @@ import numpy as n
 import matplotlib.pyplot as p
 from scipy.optimize import curve_fit
 
-# Fitting to an exponential-growth model
+# Fitting to an exponential model
 def exponential(x, a, b):
     return a*n.exp(b*x)
 
