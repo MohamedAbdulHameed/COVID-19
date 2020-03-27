@@ -31,7 +31,7 @@ day_past_exp = n.arange(9, len(past_expectations)+9, 1)
 fit_parameters1, covariances = curve_fit(exponential, day, cases) # Fitting current cases
 fit_parameters2, covariances = curve_fit(exponential, day_past_exp, past_expectations) # Fitting cases expected a week earlier
 
-a = p.subplot() # Was called because it has the ability to delete top and right frameline from the plot
+a = p.subplot() # Was called because it has the ability to delete top and right framelines from the plot
 
 # Plotting current cases
 a.plot(day, exponential(day, *fit_parameters1), "--b", label = "Current Model: %.1f $e^{%.2f}$" % tuple(fit_parameters1))
