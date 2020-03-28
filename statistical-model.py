@@ -49,7 +49,7 @@ r_sq1 = correlation_xy1**2
 r_sq2 = correlation_xy2**2
 r_sq3 = correlation_xy3**2
 
-a = p.subplot() # Was called because it has the ability to delete top and right frameline from the plot
+a = p.subplot() # Was called because it has the ability to delete the top and right framelines from the plot
 
 # Constructing lists to be used for the plot legend
 FP1 = list(fit_parameters1)
