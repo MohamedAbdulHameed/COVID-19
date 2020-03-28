@@ -34,11 +34,34 @@ day_past_exp = n.arange(9, len(past_expectations)+9, 1)
 # Curve fitting
 fit_parameters1, covariances = curve_fit(exponential, day, cases) # Fitting current cases
 fit_parameters2, covariances = curve_fit(polynomial, day_past_exp, past_expectations) # Fitting cases expected a week earlier
+fit_parameters3, covariances = curve_fit(exponential, day_past_exp, past_expectations) # Fitting cases expected a week earlier
+
+# R-squared calculation
+correlation_matrix1 = n.corrcoef(day, exponential(day, *fit_parameters1))
+correlation_matrix2 = n.corrcoef(day_past_exp, polynomial(day_past_exp, *fit_parameters2))
+correlation_matrix3 = n.corrcoef(day_past_exp, exponential(day_past_exp, *fit_parameters3))
+
+correlation_xy1 = correlation_matrix1[0, 1]
+correlation_xy2 = correlation_matrix2[0, 1]
+correlation_xy3 = correlation_matrix3[0, 1]
+
+r_sq1 = correlation_xy1**2
+r_sq2 = correlation_xy2**2
+r_sq3 = correlation_xy3**2
 
 a = p.subplot() # Was called because it has the ability to delete top and right frameline from the plot
 
+# Constructing lists to be used for the plot legend
+FP1 = list(fit_parameters1)
+FP2 = list(fit_parameters2)
+FP3 = list(fit_parameters3)
+
+FP1.append(r_sq1)
+FP2.append(r_sq2)
+FP3.append(r_sq3)
+
 # Plotting current cases
-a.plot(day, exponential(day, *fit_parameters1), "--b", label = "Current Model: %.1f $e^{%.2f}$" % tuple(fit_parameters1))
+a.plot(day, exponential(day, *fit_parameters1), "--b", label = "Current Model: %.1f $e^{%.2f}$ ($R^{2}$ = %.4f)" % tuple(FP1))
 a.plot(day, cases, "Dr")
 
 # Plotting cases expected a week later
@@ -47,7 +70,8 @@ a.plot(day_model[7], case_model[7], "Dg")
 
 # Plotting cases expected a week earlier
 a.plot(day_past_exp, past_expectations, "Dg")
-a.plot(day_past_exp, polynomial(day_past_exp, *fit_parameters2), "--c", label = "Expected Cases a Week Earlier: %.2f $x^{2}$ + %.2f x + %.2f" % tuple(fit_parameters2))
+a.plot(day_past_exp, polynomial(day_past_exp, *fit_parameters2), "--c", label = "Expected Cases a Week Earlier: %.1f $x^{2}$ + %.1f x + %.1f ($R^{2}$ = %.4f)" % tuple(FP2))
+a.plot(day_past_exp, exponential(day_past_exp, *fit_parameters3), "--r", label = "Expected Cases a Week Earlier: %.1f $e^{%.2f}$ ($R^{2}$ = %.4f)" % tuple(FP3))
 
 p.legend()
 p.xlabel("Day")
