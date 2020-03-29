@@ -11,7 +11,7 @@ def polynomial(x, a, b, c):
     return a*x**2+b*x+c
 
 # Current cases
-cases = n.array([126, 166, 196, 210, 256, 285, 294, 327, 366, 402, 456, 495, 536, 576]) # For each new day, add the number of cases for that day to this array.
+cases = n.array([126, 166, 196, 210, 256, 285, 294, 327, 366, 402, 456, 495, 536, 576, 609]) # For each new day, add the number of cases for that day to this array.
 day = n.arange(1, len(cases)+1, 1)
 
 # Expectations a week later
@@ -28,7 +28,7 @@ case_model = n.array(u)
 day_model = n.arange(len(cases), len(cases)+8, 1)
 
 # Expectations a week earlier
-past_expectations = n.array([1144, 930, 709, 902, 910, 809, 867, 948, 1008, 1139, 1071, 1265, 1324]) # Data are input from the Google Sheets Analysis
+past_expectations = n.array([1144, 930, 709, 902, 910, 809, 867, 948, 1008, 1139, 1071, 1265, 1324, 1357]) # Data are input from the Google Sheets Analysis
 day_past_exp = n.arange(9, len(past_expectations)+9, 1)
 
 # Curve fitting
@@ -49,7 +49,7 @@ r_sq1 = correlation_xy1**2
 r_sq2 = correlation_xy2**2
 r_sq3 = correlation_xy3**2
 
-a = p.subplot() # Was called because it has the ability to delete the top and right framelines from the plot
+a = p.subplot() # Was called because it has the ability to delete top and right frameline from the plot
 
 # Constructing lists to be used for the plot legend
 FP1 = list(fit_parameters1)
@@ -66,12 +66,12 @@ a.plot(day, cases, "Dr")
 
 # Plotting cases expected a week later
 a.plot(day_model, case_model, ":b", label = "Average Multiplication Factor = %.2f" %av)
-a.plot(day_model[7], case_model[7], "Dg")
 
 # Plotting cases expected a week earlier
 a.plot(day_past_exp, past_expectations, "Dg")
 a.plot(day_past_exp, polynomial(day_past_exp, *fit_parameters2), "--c", label = "Expected Cases a Week Earlier: %.1f $x^{2}$ + %.1f x + %.1f ($R^{2}$ = %.4f)" % tuple(FP2))
 a.plot(day_past_exp, exponential(day_past_exp, *fit_parameters3), "--r", label = "Expected Cases a Week Earlier: %.1f $e^{%.2f}$ ($R^{2}$ = %.4f)" % tuple(FP3))
+
 
 p.legend()
 p.xlabel("Day")
