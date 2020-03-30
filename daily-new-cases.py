@@ -6,9 +6,9 @@ x1 = n.arange(0, 120.01, .01)
 x2 = n.arange(0, 125, 5)
 
 # Fitting to a logistic curve
-z1 = 15000/(1+n.exp(-0.1*x1+0.09*60))
+z1 = 15000/(1+n.exp(-0.1*x1+exponent*60)) # Run statistical-model.py first in the same kernel to get the value of "exponent".
 z2 = n.gradient(z1, x1)
-z3 = 15000/(1+n.exp(-0.1*x2+0.09*60))
+z3 = 15000/(1+n.exp(-0.1*x2+exponent*60))
 z4 = n.gradient(z3, x2)
 
 z5 = []
