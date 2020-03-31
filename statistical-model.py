@@ -23,7 +23,7 @@ z = []
 for i in range(len(cases)-1):
     z.append(cases[i+1]/cases[i])
 mult = n.array(z)
-av = n.average(mult)
+av = n.average(mult) # This value is fed to daily-new-cases.py
 
 u = [cases[len(cases)-1]]
 for i in range(7):
@@ -108,5 +108,6 @@ p.xticks(range(1, len(cases)+9))
 
 p.show()
 
-exponent = FP1[1] # Exponent to be fed into daily-new-cases
-print(FP1[1])
+# Values to be fed into daily-new-cases.py
+exponent = FP1[1] 
+sat_level = cases[len(cases)-1]
