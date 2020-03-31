@@ -6,9 +6,9 @@ day1 = n.arange(0, 120.01, .01)
 day2 = n.arange(0, 125, 5)
 
 # Fitting to a logistic curve
-total_cases1 = 15000/(1+n.exp(-0.1*day1+exponent*60)) # Run "statistical-model.py" first in the same kernel to get the value of "exponent."
+total_cases1 = (sat_level*av**(30))/(1+n.exp(-0.1*day1+exponent*60))
 new_cases1 = n.gradient(total_cases1, day1)
-total_cases2 = 15000/(1+n.exp(-0.1*day2+exponent*60))
+total_cases2 = (sat_level*av**(30))/(1+n.exp(-0.1*day2+exponent*60))
 new_cases2 = n.gradient(total_cases2, day2)
 
 # Transforming the number of cases to integer values
