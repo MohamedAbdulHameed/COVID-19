@@ -15,7 +15,7 @@ def logistic(x, a, b, c):
     return a/(1+n.exp(-b*(x-c)))
 
 # Current cases
-cases = n.array([126, 166, 196, 210, 256, 285, 294, 327, 366, 402, 456, 495, 536, 576, 609, 656]) # For each new day, add the number of cases for that day to this array.
+cases = n.array([126, 166, 196, 210, 256, 285, 294, 327, 366, 402, 456, 495, 536, 576, 609, 656, 710]) # For each new day, add the number of cases for that day to this array.
 day = n.arange(1, len(cases)+1, 1)
 
 # Expectations a week later
@@ -32,9 +32,9 @@ case_model = n.array(u)
 day_model = n.arange(len(cases), len(cases)+8, 1)
 
 # Expectations a week earlier
-past_expectations = n.array([1144, 930, 709, 902, 910, 809, 867, 948, 1008, 1139, 1071, 1265, 1324, 1357, 1435]) # Data are input from the Google Sheets analysis
+past_expectations = n.array([1144, 930, 709, 902, 910, 809, 867, 948, 1008, 1139, 1071, 1265, 1324, 1357, 1435, 1532]) # Data are input from the Google Sheets analysis
 day_past_exp = n.arange(9, len(past_expectations)+9, 1)
-
+1532
 # Curve fitting
 fit_parameters1, covariances = curve_fit(exponential, day, cases) # Fitting current cases
 fit_parameters2, covariances = curve_fit(polynomial, day_past_exp, past_expectations) # Fitting cases expected a week earlier
