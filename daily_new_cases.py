@@ -17,7 +17,7 @@ for i in range(len(new_cases2)):
     z.append(int(new_cases2[i]))
 new_cases = n.array(z)
 
-actual = n.array([16, 40, 30, 14, 46, 29, 9, 33, 39, 36, 54, 39, 41, 40, 33, 47])
+actual = n.array([16, 40, 30, 14, 46, 29, 9, 33, 39, 36, 54, 39, 41, 40, 33, 47, 54])
 day = n.arange(1, len(actual)+1, 1)
 
 # Plotting
