@@ -1,5 +1,6 @@
 import numpy as n
 import matplotlib.pyplot as p
+from statistical_model import av, sat_level, exponent
 
 # Days
 day1 = n.arange(0, 120.01, .01)
@@ -17,13 +18,15 @@ for i in range(len(new_cases2)):
     z.append(int(new_cases2[i]))
 new_cases = n.array(z)
 
-actual = n.array([16, 40, 30, 14, 46, 29, 9, 33, 39, 36, 54, 39, 41, 40, 33, 47, 54])
+actual = n.array([16, 40, 30, 14, 46, 29, 9, 33, 39, 36, 54, 39, 41, 40, 33, 47, 54, 69, 86, 120])
 day = n.arange(1, len(actual)+1, 1)
 
+a = p.subplot()
+
 # Plotting
-p.plot(day1, new_cases1, "--b", label = "Expected Daily New Cases")
-p.plot(day2, new_cases, "Dg")
-p.plot(day, actual, "Dr", label = "Actual Daily New Cases")
+a.plot(day1, new_cases1, "--b", label = "Expected Daily New Cases")
+a.plot(day2, new_cases, "Dg")
+a.plot(day, actual, "Dr", label = "Actual Daily New Cases")
 
 # Writing the number of cases on the plot
 for i, text in enumerate(new_cases):
@@ -33,5 +36,9 @@ p.legend()
 p.grid("on")
 p.xlabel("Days Since 15 March")
 p.xticks(range(0, 125, 5))
+
+# Deleting the top and right framelines
+a.spines['right'].set_visible(False)
+a.spines['top'].set_visible(False)
 
 p.show()
