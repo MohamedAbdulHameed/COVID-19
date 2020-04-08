@@ -28,7 +28,7 @@ case_model = n.array(u)
 day_model = n.arange(len(cases), len(cases)+8, 1)
 
 # Expectations a week earlier
-past_expectations = n.array([1144, 930, 709, 902, 910, 809, 867, 948, 1008, 1139, 1071, 1265, 1324, 1357, 1435, 1532, 1669, 1850, 2124, 2285, 2492, 2819]) # Data are input from the Google Sheets analysis
+past_expectations = n.array([1144, 930, 709, 902, 910, 809, 867, 948, 1008, 1139, 1071, 1265, 1324, 1357, 1435, 1532, 1669, 1850, 2124, 2285, 2492, 2819, 3077]) # Data are input from the Google Sheets analysis
 day_past_exp = n.arange(9, len(past_expectations)+9, 1)
 
 # Curve fitting
