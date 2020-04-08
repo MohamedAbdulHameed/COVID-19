@@ -11,7 +11,7 @@ def logistic(x, a, b, c):
     return a/(1+n.exp(-b*(x-c)))
 
 # Current cases
-cases = n.array([126, 166, 196, 210, 256, 285, 294, 327, 366, 402, 456, 495, 536, 576, 609, 656, 710, 779, 865, 985]) # Source: The Egyptian Minstry of Health official statements
+cases = n.array([126, 166, 196, 210, 256, 285, 294, 327, 366, 402, 456, 495, 536, 576, 609, 656, 710, 779, 865, 985, 1070, 1173, 1322, 1450]) # Source: The Egyptian Minstry of Health official statements
 day = n.arange(1, len(cases)+1, 1)
 
 # Expectations a week later
@@ -28,7 +28,7 @@ case_model = n.array(u)
 day_model = n.arange(len(cases), len(cases)+8, 1)
 
 # Expectations a week earlier
-past_expectations = n.array([1144, 930, 709, 902, 910, 809, 867, 948, 1008, 1139, 1071, 1265, 1324, 1357, 1435, 1532, 1669, 1850, 2124]) # Data are input from the Google Sheets analysis
+past_expectations = n.array([1144, 930, 709, 902, 910, 809, 867, 948, 1008, 1139, 1071, 1265, 1324, 1357, 1435, 1532, 1669, 1850, 2124, 2285, 2492, 2819]) # Data are input from the Google Sheets analysis
 day_past_exp = n.arange(9, len(past_expectations)+9, 1)
 
 # Curve fitting
@@ -99,4 +99,3 @@ p.show()
 
 # Values to be fed into daily-new-cases.py
 exponent = FP1[1]
-sat_level = cases[len(cases)-1]
